@@ -11,6 +11,12 @@ try {
 
     $installer->getConnection()
         ->addColumn($installer->getTable('sales_flat_order'), 'cleanchimp_error', 'VARCHAR(255)');
+
+    $installer->getConnection()
+        ->addColumn($installer->getTable('sales_flat_order'), 'cleanchimp_campaign_id', 'VARCHAR(255)');
+
+    $installer->getConnection()
+        ->addColumn($installer->getTable('sales_flat_order'), 'cleanchimp_email_id', 'VARCHAR(255)');
 } catch (Exception $e) {
     Mage::logException($e);
 }
