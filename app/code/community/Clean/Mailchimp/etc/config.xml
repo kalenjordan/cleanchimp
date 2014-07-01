@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Clean_Mailchimp>
+            <version>1.0.0</version>
+        </Clean_Mailchimp>
+    </modules>
+    <global>
+        <models>
+            <cleanchimp>
+                <class>Clean_Mailchimp_Model</class>
+            </cleanchimp>
+        </models>
+        <helpers>
+            <cleanchimp>
+                <class>Clean_Mailchimp_Helper</class>
+            </cleanchimp>
+        </helpers>
+    </global>
+
+    <crontab>
+        <jobs>
+            <cleanchimp_process_orders>
+                <schedule>
+                    <cron_expr>0 * * * *</cron_expr>
+                </schedule>
+                <run>
+                    <model>cleanchimp/cron::processOrders</model>
+                </run>
+            </cleanchimp_process_orders>
+        </jobs>
+    </crontab>
+</config>
