@@ -45,16 +45,54 @@ class Clean_Mailchimp_Model_Api_OrderAdd extends Clean_Mailchimp_Model_Api_Abstr
         return null;
     }
 
-    protected function _getCategoryId($item)
+    protected function _defaultCategoryId()
     {
-        // todo grab the category off the item
-        return null;
+        return -1;
     }
 
+    protected function _defaultCategoryName()
+    {
+        return '(No Category)';
+    }
+
+    /**
+     * @param $item Mage_Sales_Model_Order_Item
+     * @todo Should probably optimize this, maybe join the category in the initial item query
+     */
+    protected function _getCategoryId($item)
+    {
+        $product = $item->getProduct();
+        if (!$product || ! $product->getId()) {
+            return $this->_defaultCategoryId();
+        }
+
+        /** @var Mage_Catalog_Model_Category $firstCategory */
+        $firstCategory = $product->getCategoryCollection()->getFirstItem();
+        if (! $firstCategory || ! $firstCategory->getId()) {
+            return $this->_defaultCategoryId();
+        }
+
+        return $firstCategory->getId();
+    }
+
+    /**
+     * @param $item Mage_Sales_Model_Order_Item
+     * @todo Should probably optimize this, maybe join the category in the initial item query
+     */
     protected function _getCategoryName($item)
     {
-        // todo grab the category name off the item
-        return null;
+        $product = $item->getProduct();
+        if (!$product || ! $product->getId()) {
+            return $this->_defaultCategoryName();
+        }
+
+        /** @var Mage_Catalog_Model_Category $firstCategory */
+        $firstCategory = $product->getCategoryCollection()->getFirstItem();
+        if (! $firstCategory || ! $firstCategory->getId()) {
+            return $this->_defaultCategoryId();
+        }
+
+        return $firstCategory->getName();
     }
 
     protected function _getItems()

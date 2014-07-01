@@ -24,10 +24,15 @@ class Clean_Mailchimp_Model_Api extends Varien_Object
             throw new Clean_Mailchimp_Exception_General("No API Key has been setup yet");
         }
 
+        Mage::helper('cleanchimp')->logIfEnabled("Request to $route: " . print_r($parameters, 1));
+
         $parameters['apikey'] = Mage::helper('cleanchimp')->getApiKey();
         $url = $this->_getApiEndpoint() . $route;
+        $response = $this->_curlPost($url, $parameters);
 
-        return $this->_curlPost($url, $parameters);
+        Mage::helper('cleanchimp')->logIfEnabled("Response from $route: " . print_r($response, 1));
+
+        return $response;
     }
 
     protected function _curlPost($url, $body)
