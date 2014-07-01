@@ -11,6 +11,29 @@
                 <class>Clean_Mailchimp_Model</class>
             </cleanchimp>
         </models>
+
+        <resources>
+            <cleanchimp_setup>
+                <setup>
+                    <module>Clean_Mailchimp</module>
+                    <class>Mage_Core_Model_Resource_Setup</class>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </cleanchimp_setup>
+            <cleanchimp_write>
+                <connection>
+                    <use>core_write</use>
+                </connection>
+            </cleanchimp_write>
+            <cleanchimp_read>
+                <connection>
+                    <use>core_read</use>
+                </connection>
+            </cleanchimp_read>
+        </resources>
+
         <helpers>
             <cleanchimp>
                 <class>Clean_Mailchimp_Helper</class>
@@ -30,4 +53,12 @@
             </cleanchimp_process_orders>
         </jobs>
     </crontab>
+
+    <default>
+        <newsletter>
+            <cleanchimp>
+                <batch_size>100</batch_size>
+            </cleanchimp>
+        </newsletter>
+    </default>
 </config>

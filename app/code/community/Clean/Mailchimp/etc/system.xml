@@ -35,7 +35,21 @@
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
+                            <comment>
+                                Each request and response sent over the Mailchimp
+                                API will be logged in cleanchimp.log
+                            </comment>
                         </enable_logging>
+                        <batch_size translate="label">
+                            <label>Batch Size</label>
+                            <sort_order>300</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>
+                                The number of orders to process per each cron run.
+                            </comment>
+                        </batch_size>
                     </fields>
                 </cleanchimp>
             </groups>

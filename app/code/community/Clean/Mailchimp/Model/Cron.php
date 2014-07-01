@@ -27,7 +27,7 @@ class Clean_Mailchimp_Model_Cron extends Varien_Object
         $orders->addFieldToFilter('cleanchimp_sent_at', array('null' => true))
             ->addFieldToFilter('state', array('nin' => $this->_getExcludedOrderStates()))
             ->setOrder('entity_id', Varien_Data_Collection::SORT_ORDER_ASC)
-            ->setPageSize(1);
+            ->setPageSize(Mage::helper('cleanchimp')->getBatchSize());
 
         $orders->getSelect()
             ->where('cleanchimp_sent_at IS NULL')

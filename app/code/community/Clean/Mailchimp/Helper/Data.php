@@ -28,4 +28,9 @@ class Clean_Mailchimp_Helper_Data extends Mage_Core_Helper_Data
     {
         return Mage::getStoreConfig('newsletter/cleanchimp/enable_logging');
     }
+
+    public function getBatchSize()
+    {
+        return Mage::getStoreConfig('newsletter/cleanchimp/batch_size');
+    }
 }
