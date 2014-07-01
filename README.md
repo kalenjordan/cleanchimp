@@ -1,0 +1,1 @@
+Mailchimp integration for Magento
