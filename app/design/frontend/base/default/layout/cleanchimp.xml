@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<layout version="1.6.1.0">
+    <default>
+        <block type="core/template" name="cleanchimp_footer" template="cleanchimp/footer.phtml"/>
+
+        <reference name="before_body_end">
+            <action method="append" ifconfig="newsletter/cleanchimp/enabled">
+                <name>cleanchimp_footer</name>
+            </action>
+        </reference>
+    </default>
+</layout>

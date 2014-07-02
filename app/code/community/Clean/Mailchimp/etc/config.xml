@@ -54,6 +54,16 @@
         </jobs>
     </crontab>
 
+    <frontend>
+        <layout>
+            <updates>
+                <cleanchimp>
+                    <file>cleanchimp.xml</file>
+                </cleanchimp>
+            </updates>
+        </layout>
+    </frontend>
+
     <default>
         <newsletter>
             <cleanchimp>

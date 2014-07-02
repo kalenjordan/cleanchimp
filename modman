@@ -1,2 +1,5 @@
 app/etc/modules/Clean_Mailchimp.xml
 app/code/community/Clean/Mailchimp
+app/design/frontend/base/default/layout/cleanchimp.xml
+app/design/frontend/base/default/template/cleanchimp
+js/clean/require/cleanchimp.js
