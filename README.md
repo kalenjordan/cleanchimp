@@ -20,6 +20,17 @@ I probably could have submitted PRs for these things, but I think it would have 
         
 2. To configure it, drop your API key into System > Config > Newsletter > Mailchimp Settings
 
+3. The javascript setup is very non-trivial right now.
+
+My apologies - this is mostly because I'm in
+the process of understanding how best to use require.js.  There are a couple of javascript dependencies
+that cleanchimp.js has has - require.js, domReady.js, as well as a few utility require.js modules that
+I've built - util, prototype cookies, and query-string.  I really wanted to avoid baking all of these
+into the module itself, but I haven't quite worked out how to make the installation process as easy
+as it should be.  Perhaps a separate module that packages up these guys.
+
+If anyone out there is interested in using this and has some ideas on how to deal with the require.js
+module dependency management, let me know - I'd love to figure it out.
 
 ## To Do
 1. Javascript / cookie stuff to handle campaign ID (mc_cid) and email ID (mc_eid).

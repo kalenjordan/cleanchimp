@@ -2,7 +2,25 @@
 
 class Clean_Mailchimp_Model_Observer extends Varien_Object
 {
-    // todo sales order before save - save the mailchimp campaign id if available on a cookie
+    /**
+     * @param $observer Varien_Event_Observer
+     */
+    public function salesOrderSaveBefore($observer)
+    {
+        /** @var Mage_Sales_Model_Order $order */
+        $order = $observer->getData('order');
+        if (! $order || ! ($order instanceof Mage_Sales_Model_Order)) {
+            return $this;
+        }
 
-    // todo javascript to grab campaign ID and email ID and set them on the cookie
+        if (isset($_COOKIE['cleanchimp_campaign_id']) && $_COOKIE['cleanchimp_campaign_id']) {
+            $order->setdata('cleanchimp_campaign_id', $_COOKIE['cleanchimp_campaign_id']);
+        }
+
+        if (isset($_COOKIE['cleanchimp_email_id']) && $_COOKIE['cleanchimp_email_id']) {
+            $order->setdata('cleanchimp_email_id', $_COOKIE['cleanchimp_email_id']);
+        }
+
+        return $this;
+    }
 }

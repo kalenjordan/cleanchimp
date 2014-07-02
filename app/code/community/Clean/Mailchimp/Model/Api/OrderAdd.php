@@ -33,16 +33,14 @@ class Clean_Mailchimp_Model_Api_OrderAdd extends Clean_Mailchimp_Model_Api_Abstr
 
     protected function _getCampaignId()
     {
-        // todo get the campaign ID off of the order if available
-        return null;
+        return $this->getOrder()->getData('cleanchimp_campaign_id');
     }
 
     // The email ID field is a specific query string parameter that mailchimp
     // passes in when ecommerce 360 is enabled.
     protected function _getEmailId()
     {
-        // todo get the email ID off of the cookie if available
-        return null;
+        return $this->getOrder()->getData('cleanchimp_email_id');
     }
 
     protected function _defaultCategoryId()

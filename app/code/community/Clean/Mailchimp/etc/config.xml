@@ -62,6 +62,17 @@
                 </cleanchimp>
             </updates>
         </layout>
+
+        <events>
+            <sales_order_save_before>
+                <observers>
+                    <cleanchimp_sales_order_save_before>
+                        <class>Clean_Mailchimp_Model_Observer</class>
+                        <method>salesOrderSaveBefore</method>
+                    </cleanchimp_sales_order_save_before>
+                </observers>
+            </sales_order_save_before>
+        </events>
     </frontend>
 
     <default>
