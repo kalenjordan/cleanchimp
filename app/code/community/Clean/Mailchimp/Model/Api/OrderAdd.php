@@ -84,10 +84,15 @@ class Clean_Mailchimp_Model_Api_OrderAdd extends Clean_Mailchimp_Model_Api_Abstr
             return $this->_defaultCategoryName();
         }
 
+        /** @var Mage_Catalog_Model_Resource_Category_Collection $categories */
+        $categories = $product->getCategoryCollection();
+        $categories->addAttributeToSelect('name');
+
         /** @var Mage_Catalog_Model_Category $firstCategory */
-        $firstCategory = $product->getCategoryCollection()->getFirstItem();
+        $firstCategory = $categories->getFirstItem();
+        Mage::helper('cleanchimp')->log("Category: " . print_r($firstCategory, 1));
         if (! $firstCategory || ! $firstCategory->getId()) {
-            return $this->_defaultCategoryId();
+            return $this->_defaultCategoryName();
         }
 
         return $firstCategory->getName();

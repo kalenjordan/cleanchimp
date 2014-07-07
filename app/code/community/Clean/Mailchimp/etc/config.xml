@@ -45,7 +45,7 @@
         <jobs>
             <cleanchimp_process_orders>
                 <schedule>
-                    <cron_expr>0 * * * *</cron_expr>
+                    <cron_expr>*/15 * * * *</cron_expr>
                 </schedule>
                 <run>
                     <model>cleanchimp/cron::processOrders</model>
