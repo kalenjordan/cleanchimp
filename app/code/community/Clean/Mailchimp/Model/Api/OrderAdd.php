@@ -14,21 +14,27 @@ class Clean_Mailchimp_Model_Api_OrderAdd extends Clean_Mailchimp_Model_Api_Abstr
     {
         $order = $this->getOrder();
 
-        return array(
-            'order' => array(
-                'id'            => $order->getIncrementId(),
-                'campaign_id'   => $this->_getCampaignId(),
-                'email_id'      => $this->_getEmailId(),
-                'email'         => $order->getCustomerEmail(),
-                'total'         => $order->getGrandTotal(),
-                'order_date'    => $order->getCreatedAt(),
-                'shipping'      => $order->getShippingAmount(),
-                'tax'           => $order->getTaxAmount(),
-                'store_id'      => Mage::app()->getStore()->getCode(),
-                'store_name'    => Mage::app()->getStore()->getName(),
-                'items'         => $this->_getItems(),
-            )
+        $orderData = array(
+            'id'            => $order->getIncrementId(),
+            'email'         => $order->getCustomerEmail(),
+            'total'         => $order->getGrandTotal(),
+            'order_date'    => $order->getCreatedAt(),
+            'shipping'      => $order->getShippingAmount(),
+            'tax'           => $order->getTaxAmount(),
+            'store_id'      => Mage::app()->getStore()->getCode(),
+            'store_name'    => Mage::app()->getStore()->getName(),
+            'items'         => $this->_getItems(),
         );
+
+        if ($this->_getCampaignId()) {
+            $orderData['campaign_id'] = $this->_getCampaignId();
+        }
+
+        if ($this->_getEmailId()) {
+            $orderData['email_id'] = $this->_getEmailId();
+        }
+
+        return array('order' => $orderData);
     }
 
     protected function _getCampaignId()
